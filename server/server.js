@@ -13,9 +13,12 @@ connectDB().catch(err => {
     process.exit(1);
 });
 
+const allowedOrigins = ['http://localhost:5173'];
+
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
-app.use(cors({ credentials: true }));
 app.use(cookieParser());
+
 
 //API endpoints
 app.get("/", (req, res) => {
